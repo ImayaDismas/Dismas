@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Imaya Profile</string>
+    <string name="user_name">Dismas Imaya</string>
+    <string name="phone">+254 700 415 505</string>
+    <string name="dash">--------</string>
+    <string name="public_repos">Public repos</string>
+    <string name="sample">1000</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="email">imayadismas@gmail.com</string>
+    <string name="stats">---- Stats</string>
+    <string name="notable_projects">---- Notable Projects</string>
+    <string name="linked_in">LinkedIn</string>
+    <string name="website">Website</string>
+    <string name="github">GitHub</string>
+    <string name="blog">Blog</string>
 </resources>
