@@ -5,4 +5,10 @@
     <color name="colorAccent">#F7F4E5</color>
 
     <color name="colorText">#181737</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBorder">#CCCCCC</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorLinkedIn">#2977C9</color>
+    <color name="colorWebsite">#0084C8</color>
+    <color name="colorBlog">#F4B459</color>
 </resources>
