@@ -21,4 +21,6 @@
     <string name="call_label">Call</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="share">Share</string>
+    <string name="rate">Rate</string>
 </resources>

@@ -21,4 +21,20 @@
         tools:ignore="AlwaysShowAction"
         android:textSize="14sp"/>
 
+    <item
+        android:id="@+id/menuShare"
+        android:orderInCategory="9"
+        android:icon="@drawable/mail"
+        android:title="@string/share"
+        app:showAsAction="never"
+        android:textSize="14sp"/>
+
+    <item
+        android:id="@+id/menuRate"
+        android:orderInCategory="9"
+        android:icon="@drawable/mail"
+        android:title="@string/rate"
+        app:showAsAction="never"
+        android:textSize="14sp"/>
+
 </menu>

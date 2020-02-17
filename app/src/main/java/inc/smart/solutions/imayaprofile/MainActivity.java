@@ -6,10 +6,13 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -156,7 +159,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(MainActivity.this, "No email clients installed", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private void shareApp(){
+        Context context = MainActivity.this;
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Imaya Profile App");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("Have a look at Imaya Profile on Google Play: https://play.google.com/store/apps/details?id=" + context.getPackageName() +" without the need to install it"));
+        startActivityForResult(Intent.createChooser(sharingIntent, "Invite via"), 202);
+    }
+
+    private void rateApp(){
+        Context context = MainActivity.this;
+        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count on Play market backstack, after pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,  Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
+        }
     }
 
     @Override
@@ -193,6 +218,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             case R.id.menuCall:
                 placeCall(getResources().getString(R.string.phone));
+                return true;
+            case R.id.menuShare:
+                shareApp();
+                return true;
+            case R.id.menuRate:
+                rateApp();
                 return true;
         }
         return super.onOptionsItemSelected(item);
