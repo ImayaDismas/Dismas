@@ -143,6 +143,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private void sendEmail(){
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{getResources().getString(R.string.email)});
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Hello There");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hello Imaya,\n\n");
+        emailIntent.setType("message/rfc822");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send email using..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.this, "No email clients installed", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -173,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuEmail:
-
+                sendEmail();
                 return true;
             case R.id.menuCall:
                 placeCall(getResources().getString(R.string.phone));
