@@ -33,7 +33,56 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/background_unsplash"/>
+                    android:src="@drawable/background"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/software_engineer"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/comfortaa_light"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"/>
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nairobi"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:textSize="14sp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginBottom="35dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:drawableStart="@drawable/outline_location_on_white_18"
+                    android:drawablePadding="3dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/android"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/comfortaa_light"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:rotation="-90"
+                    android:layout_marginStart="-15dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/web"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/comfortaa_light"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical|end"
+                    android:rotation="90"
+                    android:layout_marginEnd="-15dp"
+                    android:layout_marginBottom="15dp"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -208,7 +257,7 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/tvCancelled"
+                        android:id="@+id/tvFollowing"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/sample"
@@ -285,7 +334,10 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/rect_ripple_effect"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="35dp"
@@ -312,7 +364,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/rect_ripple_effect"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="35dp"
@@ -329,7 +383,8 @@
                 android:text="@string/github"
                 android:layout_gravity="center"
                 android:textSize="12sp"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorBlack"
+                />
 
         </LinearLayout>
 
@@ -339,7 +394,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/rect_ripple_effect"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="35dp"
@@ -367,7 +424,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/rect_ripple_effect"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="35dp"
