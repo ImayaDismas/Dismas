@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
@@ -8,8 +7,7 @@
         android:orderInCategory="8"
         android:icon="@drawable/phone"
         android:title="@string/call_label"
-        app:showAsAction="ifRoom"
-        tools:ignore="AlwaysShowAction"
+        app:showAsAction="always"
         android:textSize="14sp"/>
 
     <item
@@ -18,7 +16,6 @@
         android:icon="@drawable/mail"
         android:title="@string/email_label"
         app:showAsAction="ifRoom"
-        tools:ignore="AlwaysShowAction"
         android:textSize="14sp"/>
 
     <item
