@@ -1,12 +1,17 @@
 package inc.smart.solutions.imayaprofile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
+import android.Manifest;
 import android.content.Intent;
-import android.media.Image;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +26,7 @@ import java.util.ArrayList;
 
 import inc.smart.solutions.imayaprofile.adapter.GridViewAdapter;
 import inc.smart.solutions.imayaprofile.constants.Configs;
+import inc.smart.solutions.imayaprofile.dialogs.CustomDialog;
 import inc.smart.solutions.imayaprofile.models.Beanclass;
 import inc.smart.solutions.imayaprofile.models.GitHub;
 import inc.smart.solutions.imayaprofile.retrofit.GitHubApiManager;
@@ -32,6 +38,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static String TAG = MainActivity.class.getSimpleName();
+    private static final int PERMISSIONS_REQUEST_CALL_PHONE = 99;
     private TextView tvPublicRepos, tvFollowers, tvFollowing, tvLocation;
     private ExpandableHeightGridView gridView;
     private int[] Image = {R.drawable.image1,R.drawable.image2,R.drawable.image3,R.drawable.image4,R.drawable.image5,R.drawable.image6};
@@ -113,6 +120,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+    private void placeCall(String phone){
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.CALL_PHONE)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                Bundle args = new Bundle();
+                args.putString(CustomDialog.CUSTOM_DIALOG_TITLE, "Call Permission Needed");
+                args.putString(CustomDialog.CUSTOM_DIALOG_MESSAGE, "This app needs the Phone Call permission. Please accept to place a call");
+
+                DialogFragment dialogFragment = new CustomDialog();
+                dialogFragment.setArguments(args);
+                dialogFragment.show(getSupportFragmentManager(), "Request Call Phone Permission");
+
+            } else {
+                // No explanation needed; request the permission
+                ActivityCompat.requestPermissions(MainActivity.this,  new String[]{Manifest.permission.CALL_PHONE}, PERMISSIONS_REQUEST_CALL_PHONE);
+            }
+        } else{
+            Uri number = Uri.parse("tel:" + Uri.encode(phone));
+            Intent dial = new Intent(Intent.ACTION_CALL, number);
+            startActivity(dial);
+        }
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -130,6 +160,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuEmail:
+
+                return true;
+            case R.id.menuCall:
+                placeCall(getResources().getString(R.string.phone));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_CALL_PHONE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    placeCall(getResources().getString(R.string.phone));
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(MainActivity.this, "Permission denied, the app requires your Phone Call permission", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
         }
     }
 }
