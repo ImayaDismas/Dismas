@@ -17,4 +17,8 @@
     <string name="web">&#183;  &#8212; Website &#8212;  &#183;</string>
     <string name="software_engineer">&#183;  &#8212; Software Engineer &#8212;  &#183;</string>
     <string name="nairobi">Nairobi</string>
+    <string name="email_label">Email</string>
+    <string name="call_label">Call</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 </resources>
