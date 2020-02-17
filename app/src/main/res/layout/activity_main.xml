@@ -109,7 +109,6 @@
                         android:layout_centerVertical="true">
 
                         <TextView
-                            android:id="@+id/tvUserName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/user_name"
@@ -121,7 +120,6 @@
                             android:paddingEnd="5dp"/>
 
                         <TextView
-                            android:id="@+id/tvPhone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/phone"
@@ -134,7 +132,6 @@
                             android:paddingEnd="5dp"/>
 
                         <TextView
-                            android:id="@+id/tvEmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/email"
@@ -348,7 +345,6 @@
                 android:tint="@color/colorLinkedIn"/>
 
             <TextView
-                android:id="@+id/tvLinkedIn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/linked_in"
@@ -376,7 +372,6 @@
                 android:gravity="bottom"  />
 
             <TextView
-                android:id="@+id/tvGitHub"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -407,7 +402,6 @@
                 android:tint="@color/colorWebsite"/>
 
             <TextView
-                android:id="@+id/tvWebsite"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -436,7 +430,6 @@
                 android:gravity="bottom"/>
 
             <TextView
-                android:id="@+id/tvBlog"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

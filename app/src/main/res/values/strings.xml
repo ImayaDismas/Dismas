@@ -2,7 +2,6 @@
     <string name="app_name">Imaya Profile</string>
     <string name="user_name">Dismas Imaya</string>
     <string name="phone">+254 700 415 505</string>
-    <string name="dash">--------</string>
     <string name="public_repos">Public repos</string>
     <string name="sample">0</string>
     <string name="followers">Followers</string>
