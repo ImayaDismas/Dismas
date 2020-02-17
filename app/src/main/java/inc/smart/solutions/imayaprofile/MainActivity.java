@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.white_dismas_logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         tvPublicRepos = findViewById(R.id.tvPublicRepos);
         tvFollowers = findViewById(R.id.tvFollowers);
         tvFollowing = findViewById(R.id.tvFollowing);
