@@ -4,7 +4,7 @@
     <string name="phone">+254 700 415 505</string>
     <string name="dash">--------</string>
     <string name="public_repos">Public repos</string>
-    <string name="sample">1000</string>
+    <string name="sample">0</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="email">imayadismas@gmail.com</string>
@@ -14,4 +14,8 @@
     <string name="website">Website</string>
     <string name="github">GitHub</string>
     <string name="blog">Blog</string>
+    <string name="android">&#183;  &#8212; Android &#8212;  &#183;</string>
+    <string name="web">&#183;  &#8212; Website &#8212;  &#183;</string>
+    <string name="software_engineer">&#183;  &#8212; Software Engineer &#8212;  &#183;</string>
+    <string name="nairobi">Nairobi</string>
 </resources>
