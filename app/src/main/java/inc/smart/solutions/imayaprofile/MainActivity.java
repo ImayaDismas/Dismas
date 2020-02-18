@@ -4,6 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.content.ActivityNotFoundException;
@@ -49,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ExpandableHeightGridView gridView;
     private ArrayList<Projects> projects;
     private GridViewAdapter gridViewAdapter;
+    private ViewPager viewPager;
+    private ScreenSlidePagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getNotableProjects();
 
+        viewPager = findViewById(R.id.viewPager);
+        pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
+
         gridViewAdapter = new GridViewAdapter(MainActivity.this, projects);
         gridView.setExpanded(true);
         gridView.setAdapter(gridViewAdapter);
@@ -85,12 +96,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Log.e(TAG, position+"");
+                viewPager.setVisibility(View.VISIBLE);
 //                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
 //                // passing array index
 //                i.putExtra("id", position);
 //                startActivity(i);
             }
         });
+    }
+
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        Projects project;
+
+        ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return new ScreenSlidePageFragment();
+//            return ScreenSlidePageFragment.newInstance(position, project.getProjectScreenshots());
+        }
+
+        @Override
+        public int getCount() {
+            return 5;
+//            return project.getProjectScreenshots().length;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (viewPager.getCurrentItem() == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed();
+        } else {
+            // Otherwise, select the previous step.
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
+        }
     }
 
     private void getNotableProjects(){
