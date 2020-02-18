@@ -152,8 +152,6 @@
 
                     </LinearLayout>
 
-
-
                 </RelativeLayout>
 
             </FrameLayout>
@@ -169,20 +167,6 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/comfortaa_bold"
                 android:textColor="@color/colorPrimaryDark"/>
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/tvPersonalWebsite"-->
-            <!--                android:layout_width="150dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_gravity="center"-->
-            <!--                android:gravity="center"-->
-            <!--                android:text="@string/website"-->
-            <!--                android:textAllCaps="true"-->
-            <!--                android:textColor="@color/colorPrimary"-->
-            <!--                android:textAlignment="center"-->
-            <!--                android:background="@drawable/rounded"-->
-            <!--                android:layout_marginTop="5dp"-->
-            <!--                android:padding="10dp" />-->
 
             <View
                 android:layout_width="match_parent"
@@ -306,15 +290,16 @@
                     android:id="@+id/gridView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:horizontalSpacing="-25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:isScrollContainer="false"
-                    android:numColumns="2"
+                    android:numColumns="3"
+                    android:horizontalSpacing="10dp"
+                    android:verticalSpacing="10dp"
+                    android:layout_centerHorizontal="true"
                     android:stretchMode="columnWidth"
-                    android:verticalSpacing="3dp" />
-
-
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="5dp"/>
 
             </RelativeLayout>
 

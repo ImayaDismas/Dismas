@@ -14,4 +14,6 @@
     <color name="colorBlog">#F4B459</color>
     <color name="colorSecondaryText">#223038</color>
     <color name="colorErrorText">#F86FA4</color>
+    <color name="colorBackgroundTint">#E5F5F6</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>

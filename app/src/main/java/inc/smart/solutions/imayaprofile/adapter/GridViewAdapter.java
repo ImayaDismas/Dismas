@@ -2,43 +2,38 @@ package inc.smart.solutions.imayaprofile.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import inc.smart.solutions.imayaprofile.R;
-import inc.smart.solutions.imayaprofile.models.Beanclass;
+import inc.smart.solutions.imayaprofile.models.Projects;
 
 public class GridViewAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<Beanclass> beans;
+    ArrayList<Projects> projects;
 
-    public GridViewAdapter(Context context, ArrayList<Beanclass> beans) {
-        this.beans = beans;
+    public GridViewAdapter(Context context, ArrayList<Projects> projects) {
+        this.projects = projects;
         this.context = context;
     }
 
-
     @Override
     public int getCount() {
-        return beans.size();
+        return projects.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return beans.get(position);
+        return projects.get(position);
     }
 
     @Override
@@ -58,12 +53,10 @@ public class GridViewAdapter extends BaseAdapter {
 
             convertView = layoutInflater.inflate(R.layout.gridview_item, null);
 
-
-            viewHolder.image = convertView.findViewById(R.id.image);
-
+            viewHolder.ivBanner = convertView.findViewById(R.id.ivBanner);
+            viewHolder.tvAppName = convertView.findViewById(R.id.tvAppName);
 
             convertView.setTag(viewHolder);
-
 
         } else {
 
@@ -72,39 +65,21 @@ public class GridViewAdapter extends BaseAdapter {
         }
 
 
-        Beanclass beans = (Beanclass) getItem(position);
+        Projects projects = (Projects) getItem(position);
 
-        viewHolder.image.setImageResource(beans.getImage());
+        Picasso.get()
+                .load(projects.getProjectBanner())
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.drawable.error)
+                .into(viewHolder.ivBanner);
+
+        viewHolder.tvAppName.setText(projects.getProjectName());
         return convertView;
     }
 
     private class ViewHolder {
-        ImageView image;
-
+        ImageView ivBanner;
+        TextView tvAppName;
     }
 
-
-    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
-                .getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
-        final float roundPx = pixels;
-
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-
-        return output;
-
-
-    }
 }
