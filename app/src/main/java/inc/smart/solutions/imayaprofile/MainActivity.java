@@ -198,10 +198,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openURLExternal(Configs.GITHUB_URL);
                 break;
             case R.id.llWebsite:
+                Toast.makeText(MainActivity.this, "Website is under development", Toast.LENGTH_SHORT).show();
                 openURLExternal(Configs.WEBSITE_URL);
                 break;
             case R.id.llBlog:
-                openURLExternal(Configs.BLOG_URL);
+//                openURLExternal(Configs.BLOG_URL);
+                Toast.makeText(MainActivity.this, "Blog is under development", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
