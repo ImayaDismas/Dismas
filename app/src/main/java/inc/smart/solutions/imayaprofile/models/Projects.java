@@ -5,11 +5,13 @@ public class Projects {
     private String projectName;
     private String projectBanner;
     private String[] projectScreenshots;
+    private String projectUrl;
 
-    public Projects(String projectName, String projectBanner, String[] projectScreenshots) {
+    public Projects(String projectName, String projectBanner, String[] projectScreenshots, String projectUrl) {
         this.projectName = projectName;
         this.projectBanner = projectBanner;
         this.projectScreenshots = projectScreenshots;
+        this.projectUrl = projectUrl;
     }
 
     public String getProjectName() {
@@ -34,6 +36,14 @@ public class Projects {
 
     public void setProjectScreenshots(String[] projectScreenshots) {
         this.projectScreenshots = projectScreenshots;
+    }
+
+    public String getProjectUrl() {
+        return projectUrl;
+    }
+
+    public void setProjectUrl(String projectUrl) {
+        this.projectUrl = projectUrl;
     }
 }
 

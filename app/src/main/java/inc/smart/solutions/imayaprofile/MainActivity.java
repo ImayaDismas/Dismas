@@ -94,6 +94,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getNotableProjects(){
+        Projects project2 = new Projects(
+                "Skye",
+                "https://lh3.googleusercontent.com/13Hu_EAaR5REMBBikzVC9SjHwuktd0Dx51YCDIvO-0r5vYp-TF7hR_GE4WWAW_rgs-c=s180-rw",
+                new String[]{
+                        "https://lh3.googleusercontent.com/GmylmXAHMGkCbMZK5jqRoci51YugTGQxjjWaRmmQCqrtjWkDSav03Sq9PmH5Hc-M1EI=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/TO_SNb_w2A4nHM0-fWEwjfl_jckebfgCadL8Go1GZ-1winyHtYoBXvsx0F6hTH_x1eL5=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/NITDt9iGdYXmCxrvU7Qqzii5MrskYdoZGIshvL1upWB10130OxPjIZihkizdq-BvuEPT=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/pzJWuDzE2uOfOMHeGlNKnf9a3zj5HcGnfsFwg7mbbX-t5Y9uKCfiKRIBAuav9LSqhVbI=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/OzN2FemEenT7sIXVrCiSU1W-Yyt8GgPAQIwWlKquAF6s_IAY_4g-gLEHaF9bvEERLAoY=w720-h310-rw"},
+                "https://play.google.com/store/apps/details?id=com.geeknat.skye"
+        );
+        projects.add(project2);
+
         Projects project1 = new Projects(
                 "ZingKE",
                 "https://lh3.googleusercontent.com/_ixWWKKyxWTT0ayYcKuS6xps4h2dG85vvj3bEEj33Fzs_9egU7bgzDvnUIizBEGTFpc=s180-rw",
@@ -105,43 +118,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         "https://lh3.googleusercontent.com/pv3LE3Fbt20-b0qNOvtFZD-FlLkcsPFzNzeaSb67vH6DCXbbXTTSDJDT8zcvSWLSwQ=w720-h310-rw",
                         "https://lh3.googleusercontent.com/nvcrQ2G7iG8endNB76mMs6lx1Cd8ybyV6MGXX0FZnp-NQXg_28RPQ9OWxomx5T7haVQ=w720-h310-rw",
                         "https://lh3.googleusercontent.com/26CNZ7OePhsJnhRp3r0fTaO6QZrFPKM0FdxydBj49Hd9x91GYIri2GtKfsUhSqWXDA=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/3lcHoEOD9XYlVxergeoBxun2jib2ucz6K-1i_xNWdSzMEIQS3X95r5XqOoueQqK5vAQ=w720-h310-rw"}
+                        "https://lh3.googleusercontent.com/3lcHoEOD9XYlVxergeoBxun2jib2ucz6K-1i_xNWdSzMEIQS3X95r5XqOoueQqK5vAQ=w720-h310-rw"},
+                "https://play.google.com/store/apps/details?id=zing.app.co.ke.zing"
         );
         projects.add(project1);
 
-        Projects project2 = new Projects(
-                "ZingKE",
-                "https://lh3.googleusercontent.com/_ixWWKKyxWTT0ayYcKuS6xps4h2dG85vvj3bEEj33Fzs_9egU7bgzDvnUIizBEGTFpc=s180-rw",
-                new String[]{
-                        "https://lh3.googleusercontent.com/zBeAjRn1VLKXVF89LN2_P6moK6f431btI-cFdnZd4M2i0LzXt6rmzPVEGOlarofiIw=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/Bf-hTcWAjtz0rRm3o9b_FTxVkp3KmGEGntCswNd2YDtDMsa9rSIR7xm3HPVkcO_3poL2=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/nKgybPnQCvAhFWHop37bIUJiUjP-zWv9pbyDjQAYK3mSE9flR5Bp_jSyl28xZ-W8pFkh=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/pPnwqe7nZDWOqpXu2sfPV_4G9srjLu2JJFZehL3eUziIpzYmNM2BBaKUBRtxhEu_XBvw=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/pv3LE3Fbt20-b0qNOvtFZD-FlLkcsPFzNzeaSb67vH6DCXbbXTTSDJDT8zcvSWLSwQ=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/nvcrQ2G7iG8endNB76mMs6lx1Cd8ybyV6MGXX0FZnp-NQXg_28RPQ9OWxomx5T7haVQ=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/26CNZ7OePhsJnhRp3r0fTaO6QZrFPKM0FdxydBj49Hd9x91GYIri2GtKfsUhSqWXDA=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/3lcHoEOD9XYlVxergeoBxun2jib2ucz6K-1i_xNWdSzMEIQS3X95r5XqOoueQqK5vAQ=w720-h310-rw"}
-        );
-        projects.add(project2);
-
-        Projects project3 = new Projects(
-                "ZingKE",
-                "https://lh3.googleusercontent.com/_ixWWKKyxWTT0ayYcKuS6xps4h2dG85vvj3bEEj33Fzs_9egU7bgzDvnUIizBEGTFpc=s180-rw",
-                new String[]{
-                        "https://lh3.googleusercontent.com/zBeAjRn1VLKXVF89LN2_P6moK6f431btI-cFdnZd4M2i0LzXt6rmzPVEGOlarofiIw=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/Bf-hTcWAjtz0rRm3o9b_FTxVkp3KmGEGntCswNd2YDtDMsa9rSIR7xm3HPVkcO_3poL2=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/nKgybPnQCvAhFWHop37bIUJiUjP-zWv9pbyDjQAYK3mSE9flR5Bp_jSyl28xZ-W8pFkh=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/pPnwqe7nZDWOqpXu2sfPV_4G9srjLu2JJFZehL3eUziIpzYmNM2BBaKUBRtxhEu_XBvw=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/pv3LE3Fbt20-b0qNOvtFZD-FlLkcsPFzNzeaSb67vH6DCXbbXTTSDJDT8zcvSWLSwQ=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/nvcrQ2G7iG8endNB76mMs6lx1Cd8ybyV6MGXX0FZnp-NQXg_28RPQ9OWxomx5T7haVQ=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/26CNZ7OePhsJnhRp3r0fTaO6QZrFPKM0FdxydBj49Hd9x91GYIri2GtKfsUhSqWXDA=w720-h310-rw",
-                        "https://lh3.googleusercontent.com/3lcHoEOD9XYlVxergeoBxun2jib2ucz6K-1i_xNWdSzMEIQS3X95r5XqOoueQqK5vAQ=w720-h310-rw"}
-        );
-        projects.add(project3);
-        projects.add(project3);
-        projects.add(project3);
-        projects.add(project3);
-        projects.add(project3);
     }
 
     private void fetchUserGitHub() {

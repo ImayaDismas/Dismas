@@ -29,7 +29,6 @@
                 android:gravity="center">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgAppIcon"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@mipmap/ic_launcher_round"
