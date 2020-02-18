@@ -19,7 +19,6 @@
         android:textSize="14sp"/>
 
     <item
-        android:id="@+id/menuSettings"
         android:icon="@drawable/ic_menu_overflow_24dp"
         android:orderInCategory="101"
         app:showAsAction="always"
