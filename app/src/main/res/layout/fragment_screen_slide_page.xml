@@ -2,20 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_gravity="center" >
 
         <ImageView
             android:id="@+id/ivImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher"
-            android:tint="@color/colorPrimary"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
 
-    </FrameLayout>
+    </RelativeLayout>
 
 </ScrollView>

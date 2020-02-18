@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Projects> projects;
     private GridViewAdapter gridViewAdapter;
     private ViewPager viewPager;
+    private ScrollView scrollView;
     private ScreenSlidePagerAdapter pagerAdapter;
 
     @Override
@@ -85,9 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getNotableProjects();
 
+        scrollView = findViewById(R.id.scrollView);
         viewPager = findViewById(R.id.viewPager);
-        pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
 
         gridViewAdapter = new GridViewAdapter(MainActivity.this, projects);
         gridView.setExpanded(true);
@@ -95,33 +96,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Log.e(TAG, position+"");
+                scrollView.setVisibility(View.GONE);
                 viewPager.setVisibility(View.VISIBLE);
-//                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
-//                // passing array index
-//                i.putExtra("id", position);
-//                startActivity(i);
+                pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), projects.get(position).getProjectScreenshots());
+                viewPager.setAdapter(pagerAdapter);
             }
         });
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        Projects project;
+        String[] images;
 
-        ScreenSlidePagerAdapter(FragmentManager fm) {
+        ScreenSlidePagerAdapter(FragmentManager fm, String[] images) {
             super(fm);
+            this.images = images;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return new ScreenSlidePageFragment();
-//            return ScreenSlidePageFragment.newInstance(position, project.getProjectScreenshots());
+            return ScreenSlidePageFragment.init(images[position]);
         }
 
         @Override
         public int getCount() {
-            return 5;
-//            return project.getProjectScreenshots().length;
+            return images.length;
         }
     }
 
@@ -130,7 +128,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (viewPager.getCurrentItem() == 0) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
-            super.onBackPressed();
+            if (viewPager.getVisibility() == View.VISIBLE){
+                viewPager.setVisibility(View.GONE);
+                scrollView.setVisibility(View.VISIBLE);
+            }else{
+                super.onBackPressed();
+            }
         } else {
             // Otherwise, select the previous step.
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
