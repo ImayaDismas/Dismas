@@ -19,19 +19,29 @@
         android:textSize="14sp"/>
 
     <item
-        android:id="@+id/menuShare"
-        android:orderInCategory="9"
-        android:icon="@drawable/mail"
-        android:title="@string/share"
-        app:showAsAction="never"
-        android:textSize="14sp"/>
+        android:id="@+id/menuSettings"
+        android:icon="@drawable/ic_more_vert_white_24dp"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:title="@string/settings">
+        <menu>
 
-    <item
-        android:id="@+id/menuRate"
-        android:orderInCategory="9"
-        android:icon="@drawable/mail"
-        android:title="@string/rate"
-        app:showAsAction="never"
-        android:textSize="14sp"/>
+            <item
+                android:id="@+id/menuShare"
+                android:orderInCategory="9"
+                android:icon="@drawable/ic_share_24dp"
+                android:title="@string/share"
+                app:showAsAction="never|withText"
+                android:textSize="14sp"/>
+
+            <item
+                android:id="@+id/menuRate"
+                android:orderInCategory="9"
+                android:icon="@drawable/ic_rate_24dp"
+                android:title="@string/rate"
+                app:showAsAction="never|withText"
+                android:textSize="14sp"/>
+        </menu>
+    </item>
 
 </menu>
