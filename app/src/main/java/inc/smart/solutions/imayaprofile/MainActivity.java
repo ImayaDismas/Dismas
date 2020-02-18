@@ -1,6 +1,7 @@
 package inc.smart.solutions.imayaprofile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -10,6 +11,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -53,9 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.white_dismas_logo);
-//        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_certified_32dp);// set drawable icon
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvPublicRepos = findViewById(R.id.tvPublicRepos);
         tvFollowers = findViewById(R.id.tvFollowers);
@@ -219,6 +220,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(MainActivity.this, "Certified Android Software Engineer", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.menuEmail:
                 sendEmail();
                 return true;
