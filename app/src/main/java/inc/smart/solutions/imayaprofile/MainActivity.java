@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.white_dismas_logo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
+//        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         tvPublicRepos = findViewById(R.id.tvPublicRepos);
         tvFollowers = findViewById(R.id.tvFollowers);
