@@ -1,7 +1,6 @@
 package inc.smart.solutions.imayaprofile;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -11,13 +10,15 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 import inc.smart.solutions.imayaprofile.adapter.GridViewAdapter;
 import inc.smart.solutions.imayaprofile.constants.Configs;
 import inc.smart.solutions.imayaprofile.dialogs.CustomDialog;
-import inc.smart.solutions.imayaprofile.models.Beanclass;
+import inc.smart.solutions.imayaprofile.models.Projects;
 import inc.smart.solutions.imayaprofile.models.GitHub;
 import inc.smart.solutions.imayaprofile.retrofit.GitHubApiManager;
 import inc.smart.solutions.imayaprofile.utils.ExpandableHeightGridView;
@@ -46,8 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int PERMISSIONS_REQUEST_CALL_PHONE = 99;
     private TextView tvPublicRepos, tvFollowers, tvFollowing, tvLocation;
     private ExpandableHeightGridView gridView;
-    private int[] Image = {R.drawable.image1,R.drawable.image2,R.drawable.image3,R.drawable.image4,R.drawable.image5,R.drawable.image6};
-    private ArrayList<Beanclass> beans;
+    private ArrayList<Projects> projects;
     private GridViewAdapter gridViewAdapter;
 
     @Override
@@ -74,18 +74,74 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         llBlog.setOnClickListener(this);
 
         gridView = findViewById(R.id.gridView);
-        beans= new ArrayList<>();
+        projects = new ArrayList<>();
 
-        for (int i = 0; i< Image.length; i++) {
+        getNotableProjects();
 
-            Beanclass beanclass = new Beanclass(Image[i]);
-            beans.add(beanclass);
-
-        }
-        gridViewAdapter = new GridViewAdapter(MainActivity.this, beans);
+        gridViewAdapter = new GridViewAdapter(MainActivity.this, projects);
         gridView.setExpanded(true);
-
         gridView.setAdapter(gridViewAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Log.e(TAG, position+"");
+//                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
+//                // passing array index
+//                i.putExtra("id", position);
+//                startActivity(i);
+            }
+        });
+    }
+
+    private void getNotableProjects(){
+        Projects project1 = new Projects(
+                "ZingKE",
+                "https://lh3.googleusercontent.com/_ixWWKKyxWTT0ayYcKuS6xps4h2dG85vvj3bEEj33Fzs_9egU7bgzDvnUIizBEGTFpc=s180-rw",
+                new String[]{
+                        "https://lh3.googleusercontent.com/zBeAjRn1VLKXVF89LN2_P6moK6f431btI-cFdnZd4M2i0LzXt6rmzPVEGOlarofiIw=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/Bf-hTcWAjtz0rRm3o9b_FTxVkp3KmGEGntCswNd2YDtDMsa9rSIR7xm3HPVkcO_3poL2=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/nKgybPnQCvAhFWHop37bIUJiUjP-zWv9pbyDjQAYK3mSE9flR5Bp_jSyl28xZ-W8pFkh=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/pPnwqe7nZDWOqpXu2sfPV_4G9srjLu2JJFZehL3eUziIpzYmNM2BBaKUBRtxhEu_XBvw=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/pv3LE3Fbt20-b0qNOvtFZD-FlLkcsPFzNzeaSb67vH6DCXbbXTTSDJDT8zcvSWLSwQ=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/nvcrQ2G7iG8endNB76mMs6lx1Cd8ybyV6MGXX0FZnp-NQXg_28RPQ9OWxomx5T7haVQ=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/26CNZ7OePhsJnhRp3r0fTaO6QZrFPKM0FdxydBj49Hd9x91GYIri2GtKfsUhSqWXDA=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/3lcHoEOD9XYlVxergeoBxun2jib2ucz6K-1i_xNWdSzMEIQS3X95r5XqOoueQqK5vAQ=w720-h310-rw"}
+        );
+        projects.add(project1);
+
+        Projects project2 = new Projects(
+                "ZingKE",
+                "https://lh3.googleusercontent.com/_ixWWKKyxWTT0ayYcKuS6xps4h2dG85vvj3bEEj33Fzs_9egU7bgzDvnUIizBEGTFpc=s180-rw",
+                new String[]{
+                        "https://lh3.googleusercontent.com/zBeAjRn1VLKXVF89LN2_P6moK6f431btI-cFdnZd4M2i0LzXt6rmzPVEGOlarofiIw=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/Bf-hTcWAjtz0rRm3o9b_FTxVkp3KmGEGntCswNd2YDtDMsa9rSIR7xm3HPVkcO_3poL2=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/nKgybPnQCvAhFWHop37bIUJiUjP-zWv9pbyDjQAYK3mSE9flR5Bp_jSyl28xZ-W8pFkh=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/pPnwqe7nZDWOqpXu2sfPV_4G9srjLu2JJFZehL3eUziIpzYmNM2BBaKUBRtxhEu_XBvw=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/pv3LE3Fbt20-b0qNOvtFZD-FlLkcsPFzNzeaSb67vH6DCXbbXTTSDJDT8zcvSWLSwQ=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/nvcrQ2G7iG8endNB76mMs6lx1Cd8ybyV6MGXX0FZnp-NQXg_28RPQ9OWxomx5T7haVQ=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/26CNZ7OePhsJnhRp3r0fTaO6QZrFPKM0FdxydBj49Hd9x91GYIri2GtKfsUhSqWXDA=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/3lcHoEOD9XYlVxergeoBxun2jib2ucz6K-1i_xNWdSzMEIQS3X95r5XqOoueQqK5vAQ=w720-h310-rw"}
+        );
+        projects.add(project2);
+
+        Projects project3 = new Projects(
+                "ZingKE",
+                "https://lh3.googleusercontent.com/_ixWWKKyxWTT0ayYcKuS6xps4h2dG85vvj3bEEj33Fzs_9egU7bgzDvnUIizBEGTFpc=s180-rw",
+                new String[]{
+                        "https://lh3.googleusercontent.com/zBeAjRn1VLKXVF89LN2_P6moK6f431btI-cFdnZd4M2i0LzXt6rmzPVEGOlarofiIw=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/Bf-hTcWAjtz0rRm3o9b_FTxVkp3KmGEGntCswNd2YDtDMsa9rSIR7xm3HPVkcO_3poL2=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/nKgybPnQCvAhFWHop37bIUJiUjP-zWv9pbyDjQAYK3mSE9flR5Bp_jSyl28xZ-W8pFkh=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/pPnwqe7nZDWOqpXu2sfPV_4G9srjLu2JJFZehL3eUziIpzYmNM2BBaKUBRtxhEu_XBvw=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/pv3LE3Fbt20-b0qNOvtFZD-FlLkcsPFzNzeaSb67vH6DCXbbXTTSDJDT8zcvSWLSwQ=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/nvcrQ2G7iG8endNB76mMs6lx1Cd8ybyV6MGXX0FZnp-NQXg_28RPQ9OWxomx5T7haVQ=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/26CNZ7OePhsJnhRp3r0fTaO6QZrFPKM0FdxydBj49Hd9x91GYIri2GtKfsUhSqWXDA=w720-h310-rw",
+                        "https://lh3.googleusercontent.com/3lcHoEOD9XYlVxergeoBxun2jib2ucz6K-1i_xNWdSzMEIQS3X95r5XqOoueQqK5vAQ=w720-h310-rw"}
+        );
+        projects.add(project3);
+        projects.add(project3);
+        projects.add(project3);
+        projects.add(project3);
+        projects.add(project3);
     }
 
     private void fetchUserGitHub() {
