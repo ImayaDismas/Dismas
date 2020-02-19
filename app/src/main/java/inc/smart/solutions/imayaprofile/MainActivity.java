@@ -1,6 +1,7 @@
 package inc.smart.solutions.imayaprofile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -19,11 +20,13 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -35,8 +38,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import inc.smart.solutions.imayaprofile.adapter.GridViewAdapter;
+import inc.smart.solutions.imayaprofile.adapter.ScreenSlidePagerAdapter;
 import inc.smart.solutions.imayaprofile.constants.Configs;
 import inc.smart.solutions.imayaprofile.dialogs.CustomDialog;
 import inc.smart.solutions.imayaprofile.models.Projects;
@@ -56,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Projects> projects;
     private GridViewAdapter gridViewAdapter;
     private ViewPager viewPager;
-    private ScrollView scrollView;
-    private ScreenSlidePagerAdapter pagerAdapter;
+    private ScreenSlidePagerAdapter screenSlidePagerAdapter;
+    private int scrolledPagePosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getNotableProjects();
 
-        scrollView = findViewById(R.id.scrollView);
         viewPager = findViewById(R.id.viewPager);
 
         gridViewAdapter = new GridViewAdapter(MainActivity.this, projects);
@@ -96,32 +101,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                scrollView.setVisibility(View.GONE);
                 viewPager.setVisibility(View.VISIBLE);
-                pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), projects.get(position).getProjectScreenshots());
-                viewPager.setAdapter(pagerAdapter);
+                setUpPagerAdapter(projects.get(position).getProjectScreenshots());
             }
         });
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int devHeight = displayMetrics.heightPixels;
+        int devWidth = displayMetrics.widthPixels;
+
+        viewPager.setClipToPadding(false);
+        viewPager.setPageMargin(-devWidth / 2);
+
+        viewPager.addOnPageChangeListener(pageChangeListener);
+//        viewPager.setPageTransformer(true, pageTransformer);
+
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        String[] images;
+    private void setUpPagerAdapter(String[] images) {
+        screenSlidePagerAdapter = new ScreenSlidePagerAdapter(MainActivity.this, images);
+        viewPager.setAdapter(screenSlidePagerAdapter);
+    }
 
-        ScreenSlidePagerAdapter(FragmentManager fm, String[] images) {
-            super(fm);
-            this.images = images;
+    public void setVisibilityGone(){
+        viewPager.setVisibility(View.GONE);
+        scrolledPagePosition = -1;
+    }
+
+    ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            if (scrolledPagePosition != -1){
+                if (scrolledPagePosition != position){
+                    if (position > scrolledPagePosition){
+                        CardView cardView = screenSlidePagerAdapter.cardViews[position - 1];
+                        cardView.setVisibility(View.INVISIBLE);
+                    } else {
+                        CardView cardView = screenSlidePagerAdapter.cardViews[position + 1];
+                        cardView.setVisibility(View.INVISIBLE);
+                    }
+                    scrolledPagePosition = position;
+                }
+            } else {
+                scrolledPagePosition = position;
+                CardView cardView = screenSlidePagerAdapter.cardViews[position];
+                cardView.setVisibility(View.VISIBLE);
+            }
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return ScreenSlidePageFragment.init(images[position]);
+        public void onPageSelected(int position) {
+            CardView cardView = screenSlidePagerAdapter.cardViews[position];
+            cardView.setVisibility(View.VISIBLE);
         }
 
         @Override
-        public int getCount() {
-            return images.length;
+        public void onPageScrollStateChanged(int state) {
+
         }
-    }
+    };
 
     @Override
     public void onBackPressed() {
@@ -130,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Back button. This calls finish() on this activity and pops the back stack.
             if (viewPager.getVisibility() == View.VISIBLE){
                 viewPager.setVisibility(View.GONE);
-                scrollView.setVisibility(View.VISIBLE);
             }else{
                 super.onBackPressed();
             }
