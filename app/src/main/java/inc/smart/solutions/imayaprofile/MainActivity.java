@@ -43,6 +43,8 @@ import java.util.List;
 
 import inc.smart.solutions.imayaprofile.adapter.GridViewAdapter;
 import inc.smart.solutions.imayaprofile.adapter.ScreenSlidePagerAdapter;
+import inc.smart.solutions.imayaprofile.animations.DepthPageTransformer;
+import inc.smart.solutions.imayaprofile.animations.ZoomOutPageTransformer;
 import inc.smart.solutions.imayaprofile.constants.Configs;
 import inc.smart.solutions.imayaprofile.dialogs.CustomDialog;
 import inc.smart.solutions.imayaprofile.models.Projects;
@@ -116,8 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPager.setPageMargin(-devWidth / 2);
 
         viewPager.addOnPageChangeListener(pageChangeListener);
-//        viewPager.setPageTransformer(true, pageTransformer);
-
+        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
     }
 
     private void setUpPagerAdapter(String[] images) {
