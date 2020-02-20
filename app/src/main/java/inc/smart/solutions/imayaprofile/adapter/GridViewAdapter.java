@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ public class GridViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ViewHolder viewHolder = null;
+        ViewHolder viewHolder;
         if (convertView == null) {
 
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -67,10 +67,9 @@ public class GridViewAdapter extends BaseAdapter {
 
         Projects projects = (Projects) getItem(position);
 
-        Picasso.get()
+        Glide.with(context)
                 .load(projects.getProjectBanner())
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.drawable.error)
+                .placeholder(R.drawable.pre_loader)
                 .into(viewHolder.ivBanner);
 
         viewHolder.tvAppName.setText(projects.getProjectName());
