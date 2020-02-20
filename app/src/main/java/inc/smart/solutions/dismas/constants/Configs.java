@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile.constants;
+package inc.smart.solutions.dismas.constants;
 
 public class Configs {
     public static final String BASE_URL = "https://api.github.com/";

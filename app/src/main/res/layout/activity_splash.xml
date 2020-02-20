@@ -22,7 +22,7 @@
             android:src="@drawable/white_logo"
             android:tint="@color/colorPrimary"/>
 
-        <inc.smart.solutions.imayaprofile.utils.Typewriter
+        <inc.smart.solutions.dismas.utils.Typewriter
             android:id="@+id/tvSlogan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -287,7 +287,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="70dp">
 
-                <inc.smart.solutions.imayaprofile.utils.ExpandableHeightGridView
+                <inc.smart.solutions.dismas.utils.ExpandableHeightGridView
                     android:id="@+id/gridView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -310,7 +310,7 @@
     </ScrollView>
 
 
-    <inc.smart.solutions.imayaprofile.utils.WrapContentHeightViewPager
+    <inc.smart.solutions.dismas.utils.WrapContentHeightViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

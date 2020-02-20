@@ -1,14 +1,10 @@
-package inc.smart.solutions.imayaprofile;
+package inc.smart.solutions.dismas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
@@ -16,19 +12,15 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,19 +30,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import inc.smart.solutions.imayaprofile.adapter.GridViewAdapter;
-import inc.smart.solutions.imayaprofile.adapter.ScreenSlidePagerAdapter;
-import inc.smart.solutions.imayaprofile.animations.DepthPageTransformer;
-import inc.smart.solutions.imayaprofile.animations.ZoomOutPageTransformer;
-import inc.smart.solutions.imayaprofile.constants.Configs;
-import inc.smart.solutions.imayaprofile.dialogs.CustomDialog;
-import inc.smart.solutions.imayaprofile.models.Projects;
-import inc.smart.solutions.imayaprofile.models.GitHub;
-import inc.smart.solutions.imayaprofile.retrofit.GitHubApiManager;
-import inc.smart.solutions.imayaprofile.utils.ExpandableHeightGridView;
+import inc.smart.solutions.dismas.adapter.GridViewAdapter;
+import inc.smart.solutions.dismas.adapter.ScreenSlidePagerAdapter;
+import inc.smart.solutions.dismas.animations.ZoomOutPageTransformer;
+import inc.smart.solutions.dismas.constants.Configs;
+import inc.smart.solutions.dismas.dialogs.CustomDialog;
+import inc.smart.solutions.dismas.models.Projects;
+import inc.smart.solutions.dismas.models.GitHub;
+import inc.smart.solutions.dismas.retrofit.GitHubApiManager;
+import inc.smart.solutions.dismas.utils.ExpandableHeightGridView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

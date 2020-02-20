@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile.animations;
+package inc.smart.solutions.dismas.animations;
 
 import android.view.View;
 

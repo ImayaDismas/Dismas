@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile;
+package inc.smart.solutions.dismas;
 
 import android.content.Context;
 
