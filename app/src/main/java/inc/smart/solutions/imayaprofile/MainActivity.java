@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int devHeight = displayMetrics.heightPixels;
         int devWidth = displayMetrics.widthPixels;
 
         viewPager.setClipToPadding(false);
@@ -168,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
             if (viewPager.getVisibility() == View.VISIBLE){
-                viewPager.setVisibility(View.GONE);
+                setVisibilityGone();
             }else{
                 super.onBackPressed();
             }
@@ -248,6 +247,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
+    }
+
+    public void openPlayStore(int position){
+        openURLExternal(projects.get(position).getProjectUrl());
     }
 
     private void placeCall(String phone){
