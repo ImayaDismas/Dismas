@@ -40,7 +40,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/white_dismas_logo"
+                    android:src="@drawable/white_logo"
                     android:layout_marginBottom="20dp"/>
 
                 <TextView
