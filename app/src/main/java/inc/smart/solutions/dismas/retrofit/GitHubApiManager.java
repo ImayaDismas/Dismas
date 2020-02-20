@@ -1,8 +1,8 @@
-package inc.smart.solutions.imayaprofile.retrofit;
+package inc.smart.solutions.dismas.retrofit;
 
-import inc.smart.solutions.imayaprofile.constants.Configs;
-import inc.smart.solutions.imayaprofile.models.GitHub;
-import inc.smart.solutions.imayaprofile.retrofit.interfaces.GetGitHubData;
+import inc.smart.solutions.dismas.constants.Configs;
+import inc.smart.solutions.dismas.models.GitHub;
+import inc.smart.solutions.dismas.retrofit.interfaces.GetGitHubData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;

@@ -1,18 +1,11 @@
-package inc.smart.solutions.imayaprofile;
+package inc.smart.solutions.dismas;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import inc.smart.solutions.imayaprofile.utils.Typewriter;
+import inc.smart.solutions.dismas.utils.Typewriter;
 
 public class SplashActivity extends AppCompatActivity {
 

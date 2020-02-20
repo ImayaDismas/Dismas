@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile.models;
+package inc.smart.solutions.dismas.models;
 
 public class GitHub {
 

@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile.adapter;
+package inc.smart.solutions.dismas.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,8 +13,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import inc.smart.solutions.imayaprofile.R;
-import inc.smart.solutions.imayaprofile.models.Projects;
+import inc.smart.solutions.dismas.R;
+import inc.smart.solutions.dismas.models.Projects;
 
 public class GridViewAdapter extends BaseAdapter {
 

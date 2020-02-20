@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile.utils;
+package inc.smart.solutions.dismas.utils;
 
 import android.content.Context;
 import android.util.AttributeSet;

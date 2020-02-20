@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile.dialogs;
+package inc.smart.solutions.dismas.dialogs;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 
-import inc.smart.solutions.imayaprofile.R;
+import inc.smart.solutions.dismas.R;
 
 public class CustomDialog extends DialogFragment {
     private static final int PERMISSIONS_REQUEST_CALL_PHONE = 99;

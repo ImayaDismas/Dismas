@@ -1,4 +1,4 @@
-package inc.smart.solutions.imayaprofile.adapter;
+package inc.smart.solutions.dismas.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
-import inc.smart.solutions.imayaprofile.MainActivity;
-import inc.smart.solutions.imayaprofile.R;
+import inc.smart.solutions.dismas.MainActivity;
+import inc.smart.solutions.dismas.R;
 
 public class ScreenSlidePagerAdapter extends PagerAdapter {
 
