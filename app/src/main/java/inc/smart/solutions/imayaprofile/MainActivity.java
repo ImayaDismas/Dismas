@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewPager viewPager;
     private ScreenSlidePagerAdapter screenSlidePagerAdapter;
     private int scrolledPagePosition = -1;
+    private int clickedPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                clickedPosition = position;
                 viewPager.setVisibility(View.VISIBLE);
                 setUpPagerAdapter(projects.get(position).getProjectScreenshots());
             }
@@ -249,8 +251,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    public void openPlayStore(int position){
-        openURLExternal(projects.get(position).getProjectUrl());
+    public void openPlayStore(){
+        openURLExternal(projects.get(clickedPosition).getProjectUrl());
     }
 
     private void placeCall(String phone){

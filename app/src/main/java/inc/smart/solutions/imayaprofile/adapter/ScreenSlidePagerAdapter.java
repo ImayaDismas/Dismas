@@ -64,7 +64,7 @@ public class ScreenSlidePagerAdapter extends PagerAdapter {
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)context).openPlayStore(position);
+                ((MainActivity)context).openPlayStore();
             }
         });
 
