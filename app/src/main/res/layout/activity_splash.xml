@@ -30,7 +30,7 @@
             android:textColor="@color/colorText"
             android:textSize="18sp"
             android:layout_gravity="bottom|center_horizontal"
-            android:fontFamily="@font/harting_plain"
+            android:fontFamily="@font/type_writer"
             android:textAlignment="center"/>
 
     </FrameLayout>
