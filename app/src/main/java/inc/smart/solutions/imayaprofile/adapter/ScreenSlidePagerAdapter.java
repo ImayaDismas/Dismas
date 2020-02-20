@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -68,10 +68,9 @@ public class ScreenSlidePagerAdapter extends PagerAdapter {
             }
         });
 
-        Picasso.get()
+        Glide.with(context)
                 .load(images[position])
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.drawable.error)
+                .placeholder(R.drawable.pre_loader)
                 .into(ivImage);
 
         container.addView(view);
