@@ -46,7 +46,7 @@ public class ScreenSlidePagerAdapter extends PagerAdapter {
 
     @NotNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
 
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.slide_screen, container, false);
 
@@ -58,6 +58,13 @@ public class ScreenSlidePagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 ((MainActivity)context).setVisibilityGone();
+            }
+        });
+
+        ivImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)context).openPlayStore(position);
             }
         });
 
