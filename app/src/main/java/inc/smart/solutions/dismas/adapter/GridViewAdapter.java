@@ -18,8 +18,8 @@ import inc.smart.solutions.dismas.models.Projects;
 
 public class GridViewAdapter extends BaseAdapter {
 
-    Context context;
-    ArrayList<Projects> projects;
+    private Context context;
+    private ArrayList<Projects> projects;
 
     public GridViewAdapter(Context context, ArrayList<Projects> projects) {
         this.projects = projects;
