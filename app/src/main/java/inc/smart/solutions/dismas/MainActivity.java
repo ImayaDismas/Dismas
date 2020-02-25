@@ -284,12 +284,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void shareApp(){
-        Context context = MainActivity.this;
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Imaya Profile App");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("Have a look at Imaya Profile on Google Play: https://play.google.com/store/apps/details?id=" + context.getPackageName() +" without the need to install it"));
-        startActivityForResult(Intent.createChooser(sharingIntent, "Invite via"), 202);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Dismas Profile App");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "\nHave a look at Dismas Profile on Google Play:\n\nhttps://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\nwithout the need to install it.\n");
+        startActivityForResult(Intent.createChooser(sharingIntent, "Share via"), 202);
     }
 
     private void rateApp(){
