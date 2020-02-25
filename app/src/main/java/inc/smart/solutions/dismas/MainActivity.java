@@ -49,9 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static String TAG = MainActivity.class.getSimpleName();
     private static final int PERMISSIONS_REQUEST_CALL_PHONE = 99;
     private TextView tvPublicRepos, tvFollowers, tvFollowing, tvLocation;
-    private ExpandableHeightGridView gridView;
     private ArrayList<Projects> projects;
-    private GridViewAdapter gridViewAdapter;
     private ViewPager viewPager;
     private ScreenSlidePagerAdapter screenSlidePagerAdapter;
     private int scrolledPagePosition = -1;
@@ -80,14 +78,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         llWebsite.setOnClickListener(this);
         llBlog.setOnClickListener(this);
 
-        gridView = findViewById(R.id.gridView);
+        ExpandableHeightGridView gridView = findViewById(R.id.gridView);
         projects = new ArrayList<>();
 
         getNotableProjects();
 
         viewPager = findViewById(R.id.viewPager);
 
-        gridViewAdapter = new GridViewAdapter(MainActivity.this, projects);
+        GridViewAdapter gridViewAdapter = new GridViewAdapter(MainActivity.this, projects);
         gridView.setExpanded(true);
         gridView.setAdapter(gridViewAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -250,12 +248,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.CALL_PHONE)) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 Bundle args = new Bundle();
-                args.putString(CustomDialog.CUSTOM_DIALOG_TITLE, "Call Permission Needed");
-                args.putString(CustomDialog.CUSTOM_DIALOG_MESSAGE, "This app needs the Phone Call permission. Please accept to place a call");
+                args.putString(CustomDialog.CUSTOM_DIALOG_TITLE, getResources().getString(R.string.permission_needed));
+                args.putString(CustomDialog.CUSTOM_DIALOG_MESSAGE, getResources().getString(R.string.phone_call_permission));
 
                 DialogFragment dialogFragment = new CustomDialog();
                 dialogFragment.setArguments(args);
-                dialogFragment.show(getSupportFragmentManager(), "Request Call Phone Permission");
+                dialogFragment.show(getSupportFragmentManager(), getResources().getString(R.string.request_phone_call_permission));
 
             } else {
                 // No explanation needed; request the permission
@@ -272,28 +270,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.setType("text/plain");
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{getResources().getString(R.string.email)});
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Hello There");
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hello Imaya,\n\n");
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.hello_there));
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, getResources().getString(R.string.hello));
         emailIntent.setType("message/rfc822");
 
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send email using..."));
+            startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.send_email_using)));
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this, "No email clients installed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.no_email_clients_installed), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void shareApp(){
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Dismas Profile App");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "\nHave a look at Dismas Profile on Google Play:\n\nhttps://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\nwithout the need to install it.\n");
-        startActivityForResult(Intent.createChooser(sharingIntent, "Share via"), 202);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.profile));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, String.format(getResources().getString(R.string.share_app), BuildConfig.APPLICATION_ID));
+        startActivityForResult(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_via)), 202);
     }
 
     private void rateApp(){
         Context context = MainActivity.this;
-        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+        Uri uri = Uri.parse(String.format("%s%s", getResources().getString(R.string.market), context.getPackageName()));
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         // To count on Play market backstack, after pressing back button,
         // to taken back to our application, we need to add following flags to intent.
@@ -301,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW,  Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
+            startActivity(new Intent(Intent.ACTION_VIEW,  Uri.parse(String.format("%s%s", getResources().getString(R.string.playstore_details), context.getPackageName()))));
         }
     }
 
@@ -315,12 +313,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openURLExternal(Configs.GITHUB_URL);
                 break;
             case R.id.llWebsite:
-                Toast.makeText(MainActivity.this, "Website is under development", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getResources().getString(R.string.website_under_development), Toast.LENGTH_SHORT).show();
                 openURLExternal(Configs.WEBSITE_URL);
                 break;
             case R.id.llBlog:
 //                openURLExternal(Configs.BLOG_URL);
-                Toast.makeText(MainActivity.this, "Blog is under development", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getResources().getString(R.string.blog_under_development), Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -337,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(MainActivity.this, "Certified Android Software Engineer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getResources().getString(R.string.certified_android_software_engineer), Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuEmail:
                 sendEmail();
@@ -364,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(MainActivity.this, "Permission denied, the app requires your Phone Call permission", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
                 }
                 return;
             }

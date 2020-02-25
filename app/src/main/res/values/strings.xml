@@ -25,4 +25,20 @@
     <string name="rate">Rate</string>
     <string name="settings">Settings</string>
     <string name="slogan">&#183; It\'s the small deeds that matter &#183;</string>
+    <string name="share_app">Have a look at Dismas Profile on Google Play:  https://play.google.com/store/apps/details?id=%s without the need to install it.</string>
+    <string name="profile">Dismas Profile App</string>
+    <string name="share_via">Share via</string>
+    <string name="playstore_details">http://play.google.com/store/apps/details?id=</string>
+    <string name="no_email_clients_installed">No email clients installed</string>
+    <string name="send_email_using">Send email using...</string>
+    <string name="hello_there">Hello There</string>
+    <string name="hello">Hello Imaya,</string>
+    <string name="market">market://details?id=</string>
+    <string name="website_under_development">Website is under development</string>
+    <string name="blog_under_development">Blog is under development</string>
+    <string name="certified_android_software_engineer">Certified Android Software Engineer</string>
+    <string name="permission_denied">Permission denied, the app requires your Phone Call permission</string>
+    <string name="permission_needed">Call Permission Needed</string>
+    <string name="phone_call_permission">This app needs the Phone Call permission. Please accept to place a call</string>
+    <string name="request_phone_call_permission">Request Call Phone Permission</string>
 </resources>
