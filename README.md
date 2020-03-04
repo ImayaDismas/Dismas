@@ -10,6 +10,8 @@ Dismas is a personal profile - blurb of career portfolio outlining my skills and
   <img src="https://github.com/ImayaDismas/Dismas/blob/develop/images/Screenshot_20200220-150518.png">
 </p>
 
+![](images/Screenshot_20200220-150518.png.png?raw=true)
+
 
 ## Overview 
 The app illustrates:
