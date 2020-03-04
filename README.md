@@ -36,6 +36,7 @@ The app illustrates:
 At the end of this project, I had a better understanding of Instant App deployment.
 
 
->_**Developed by:**_
+_**Developed by:**_
 >> Imaya Dismas
+>
 >> Senior Software Engineer
