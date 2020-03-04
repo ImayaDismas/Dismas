@@ -10,6 +10,7 @@ Dismas is a personal profile - blurb of career portfolio outlining my skills and
   <img src="https://github.com/ImayaDismas/Dismas/blob/develop/images/Screenshot_20200220-150518.png" width="145" height="280" style="float: left; margin-right: 10px;">
   <img src="https://github.com/ImayaDismas/Dismas/blob/develop/images/Screenshot_20200220-150528.png" width="145" height="280" style="float: left; margin-right: 10px;">
   <img src="https://github.com/ImayaDismas/Dismas/blob/develop/images/Screenshot_20200220-150550.png" width="145" height="280" style="float: left; margin-right: 10px;">
+  <img src="https://github.com/ImayaDismas/Dismas/blob/develop/images/Screenshot_20200220-150603.png" width="145" height="280" style="float: left; margin-right: 10px;">
 </p>
 
 
