@@ -4,13 +4,13 @@ Dismas is a personal profile - blurb of career portfolio outlining my skills and
 
 ---
 ## Live Demo
-Click [here](https://play.google.com/store/apps/details?id=inc.smart.solutions.imayaprofile) for a live look.
+[![Get it on Google Play](https://github.com/ImayaDismas/Dismas/blob/develop/download_on_the_play_store_badge.svg)](https://play.google.com/store/apps/details?id=inc.smart.solutions.imayaprofile)
 
 <p align="center">
   <img src="https://github.com/ImayaDismas/Dismas/blob/develop/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png">
 </p>
 
----
+
 ## Overview 
 The app illustrates:
 
@@ -20,7 +20,7 @@ The app illustrates:
 - Familiarity with GIT version control.
 - Personality - creative, diligent, self-motivated and well organized team player.
 
----
+
 ## Skills
 - Java for Android
 - Git & Github
@@ -28,12 +28,11 @@ The app illustrates:
 - Material Design Principles
 - Play Store - Apps Publish
 
----
->_## Conclusion_
+
+## Conclusion
 At the end of this project, I had a better understanding of Instant App deployment.
 
----
+
 >_**Developed by:**_
 >> Imaya Dismas
->
 >> Senior Software Engineer
