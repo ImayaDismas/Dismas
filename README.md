@@ -2,7 +2,7 @@
 
 Dismas is a personal profile - blurb of career portfolio outlining my skills and strengths in Android apps development.
 
----
+
 ## Live Demo
 [![Get it on Google Play](https://github.com/ImayaDismas/Dismas/blob/develop/images/download_on_the_play_store_badge.svg)](https://play.google.com/store/apps/details?id=inc.smart.solutions.imayaprofile)
 
