@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00A0AE</color>
-    <color name="colorPrimaryDark">#00808B</color>
+    <color name="colorPrimary">#0792A5</color>
+    <color name="primary_dark">#057484</color>
 <!--    <color name="colorAccent">#F7F4E5</color>-->
     <color name="colorAccent">#AE0E00</color>
 
     <color name="colorText">#181737</color>
-    <color name="colorWhite">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="colorBorder">#CCCCCC</color>
-    <color name="colorBlack">#000000</color>
+    <color name="black">#000000</color>
     <color name="colorLinkedIn">#2977C9</color>
     <color name="colorWebsite">#0084C8</color>
     <color name="colorBlog">#F4B459</color>
     <color name="colorSecondaryText">#223038</color>
     <color name="colorErrorText">#F86FA4</color>
     <color name="colorBackgroundTint">#E5F5F6</color>
+    <color name="hack">#20C20E</color>
+    <color name="background">#36393D</color>
 </resources>

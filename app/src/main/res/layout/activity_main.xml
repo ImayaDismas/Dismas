@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nairobi"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/white"
                     android:fontFamily="@font/comfortaa_bold"
                     android:textSize="14sp"
                     android:layout_gravity="bottom|end"
@@ -144,7 +144,7 @@
                             android:textColor="@color/colorText"
                             android:fontFamily="@font/comfortaa_light"
                             android:textSize="12sp"
-                            android:background="@color/colorWhite"
+                            android:background="@color/white"
                             android:paddingStart="5dp"
                             android:paddingEnd="5dp"/>
 
@@ -156,7 +156,7 @@
                             android:textColor="@color/colorText"
                             android:fontFamily="@font/comfortaa_light"
                             android:textSize="12sp"
-                            android:background="@color/colorWhite"
+                            android:background="@color/white"
                             android:paddingStart="5dp"
                             android:paddingEnd="5dp"/>
 
@@ -176,7 +176,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/comfortaa_bold"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/primary_dark"/>
 
             <View
                 android:layout_width="match_parent"
@@ -289,7 +289,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/comfortaa_bold"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/primary_dark"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -389,7 +389,7 @@
                 android:text="@string/github"
                 android:layout_gravity="center"
                 android:textSize="12sp"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/black"
                 />
 
         </LinearLayout>

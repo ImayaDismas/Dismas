@@ -5,45 +5,23 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity"
+    tools:context=".LandingActivity"
     android:background="@drawable/bg_repeat">
 
-    <me.ibrahimsn.particle.ParticleView
-        android:id="@+id/particleView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:particleCount="60"
-        app:particleMinRadius="3"
-        app:particleMaxRadius="10"
-        app:particlesBackgroundColor="#23262a"
-        app:particleColor="@android:color/holo_green_dark"
-        app:particleLineColor="@android:color/holo_green_dark"
-        app:particleLinesEnabled="true"
-        android:visibility="gone"/>
-
     <FrameLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/white_logo"
-            app:tint="@color/colorPrimary"/>
+        android:layout_marginBottom="20dp">
 
         <inc.smart.solutions.dismas.utils.Typewriter
             android:id="@+id/tvSlogan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/slogan"
-            android:textColor="@color/colorText"
+            android:textColor="@color/hack"
             android:textSize="18sp"
             android:layout_gravity="bottom|center_horizontal"
             android:fontFamily="@font/type_writer"

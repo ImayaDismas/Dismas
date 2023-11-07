@@ -117,7 +117,7 @@
                         android:background="@drawable/ok_btn"
                         android:text="@string/confirm"
                         android:textAllCaps="true"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/primary_dark" />
 
                 </LinearLayout>
             </LinearLayout>
