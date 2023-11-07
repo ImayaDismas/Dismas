@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'inc.smart.solutions.dismas'
     compileSdk 34
+
     defaultConfig {
         applicationId "inc.smart.solutions.imayaprofile"
         minSdk 21
@@ -9,6 +11,8 @@ android {
         versionCode 103
         versionName "1.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        archivesBaseName = "dismas-profile-build-$versionName"
     }
     buildTypes {
         release {
@@ -16,7 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'inc.smart.solutions.dismas'
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {

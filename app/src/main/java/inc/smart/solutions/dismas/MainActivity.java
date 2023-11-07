@@ -31,10 +31,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.BuildConfig;
 import inc.smart.solutions.dismas.adapter.GridViewAdapter;
 import inc.smart.solutions.dismas.adapter.ScreenSlidePagerAdapter;
 import inc.smart.solutions.dismas.animations.ZoomOutPageTransformer;
 import inc.smart.solutions.dismas.constants.Configs;
+import inc.smart.solutions.dismas.databinding.ActivityMainBinding;
 import inc.smart.solutions.dismas.dialogs.CustomDialog;
 import inc.smart.solutions.dismas.models.Projects;
 import inc.smart.solutions.dismas.models.GitHub;
@@ -45,10 +47,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     private static String TAG = MainActivity.class.getSimpleName();
+    private ActivityMainBinding binding;
     private static final int PERMISSIONS_REQUEST_CALL_PHONE = 99;
-    private TextView tvPublicRepos, tvFollowers, tvFollowing, tvLocation;
     private ArrayList<Projects> projects;
     private ViewPager viewPager;
     private ScreenSlidePagerAdapter screenSlidePagerAdapter;
@@ -58,15 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_certified_32dp);// set drawable icon
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tvPublicRepos = findViewById(R.id.tvPublicRepos);
-        tvFollowers = findViewById(R.id.tvFollowers);
-        tvFollowing = findViewById(R.id.tvFollowing);
-        tvLocation = findViewById(R.id.tvLocation);
         fetchUserGitHub();
 
         LinearLayout llLinkedIn = findViewById(R.id.llLinkedIn);
@@ -207,10 +206,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (response.isSuccessful()) {
                     GitHub gitHub = response.body();
                     if (gitHub != null) {
-                        tvPublicRepos.setText(String.valueOf(gitHub.getPublic_repos()));
-                        tvFollowers.setText(String.valueOf(gitHub.getFollowers()));
-                        tvFollowing.setText(String.valueOf(gitHub.getFollowing()));
-                        tvLocation.setText(gitHub.getLocation());
+                        binding.tvPublicRepos.setText(String.valueOf(gitHub.getPublic_repos()));
+                        binding.tvFollowers.setText(String.valueOf(gitHub.getFollowers()));
+                        binding.tvFollowing.setText(String.valueOf(gitHub.getFollowing()));
+                        binding.tvLocation.setText(gitHub.getLocation());
                     }
                 } else {
                     String message = response.message();
@@ -304,6 +303,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        binding.particleView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        binding.particleView.pause();
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.llLinkedIn:
@@ -355,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSIONS_REQUEST_CALL_PHONE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

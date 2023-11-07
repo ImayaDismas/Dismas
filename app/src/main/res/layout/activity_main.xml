@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@android:color/black">
+
+    <me.ibrahimsn.particle.ParticleView
+        android:id="@+id/particleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:particleCount="60"
+        app:particleMinRadius="3"
+        app:particleMaxRadius="10"
+        app:particlesBackgroundColor="#23262a"
+        app:particleColor="@android:color/holo_green_dark"
+        app:particleLineColor="@android:color/holo_green_dark"
+        app:particleLinesEnabled="true" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -13,28 +26,24 @@
         android:scrollbars="none"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/colorWhite">
+            android:orientation="vertical">
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:background="@color/colorWhite">
-
-
+                android:layout_height="230dp">
                 <!-- Cover Image -->
 
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background"/>
+                    android:scaleType="centerCrop"/>
 
                 <ImageView
                     android:layout_width="100dp"
@@ -309,7 +318,6 @@
 
     </ScrollView>
 
-
     <inc.smart.solutions.dismas.utils.WrapContentHeightViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -324,12 +332,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/colorWhite"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/llLinkedIn"
@@ -337,7 +345,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/rect_ripple_effect"
             android:clickable="true"
             android:focusable="true">
 
@@ -347,7 +354,7 @@
                 android:src="@drawable/ic_linked_in_64dp"
                 android:layout_gravity="center"
                 android:gravity="bottom"
-                android:tint="@color/colorLinkedIn"/>
+                app:tint="@color/colorLinkedIn"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -365,7 +372,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/rect_ripple_effect"
             android:clickable="true"
             android:focusable="true">
 
@@ -394,7 +400,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/rect_ripple_effect"
             android:clickable="true"
             android:focusable="true">
 
@@ -404,7 +409,7 @@
                 android:src="@drawable/ic_internet_64dp"
                 android:layout_gravity="center"
                 android:gravity="bottom"
-                android:tint="@color/colorWebsite"/>
+                app:tint="@color/colorWebsite"/>
 
             <TextView
                 android:gravity="center"
@@ -423,7 +428,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/rect_ripple_effect"
             android:clickable="true"
             android:focusable="true">
 
