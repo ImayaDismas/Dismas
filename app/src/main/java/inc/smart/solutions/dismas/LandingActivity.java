@@ -6,6 +6,7 @@ import androidx.core.splashscreen.SplashScreen;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,7 @@ import inc.smart.solutions.dismas.viewmodels.SplashViewModel;
 public class LandingActivity extends AppCompatActivity {
     private ActivityLandingBinding binding;
     private SplashViewModel splashViewModel;
+    private ObjectAnimator rotationAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,14 @@ public class LandingActivity extends AppCompatActivity {
         fadeIn.setDuration(1000); // Duration in milliseconds
         fadeIn.setRepeatMode(Animation.REVERSE); // Optional: This will reverse the animation when it reaches the end
         fadeIn.setRepeatCount(Animation.INFINITE);
+
+        // Create an ObjectAnimator to rotate the text 360 degrees
+        rotationAnimator = ObjectAnimator.ofFloat(binding.tvResults, "rotation", 0f, 360f);
+        rotationAnimator.setDuration(1000); // Set the duration of the animation in milliseconds
+        rotationAnimator.setRepeatCount(ObjectAnimator.INFINITE); // Infinite rotation
+
+        // Start the rotation animation
+        rotationAnimator.start();
 
         binding.tvSearching.startAnimation(fadeIn);
 
@@ -77,10 +87,15 @@ public class LandingActivity extends AppCompatActivity {
                 // Animation ended
                 // Perform actions after the animation is complete
                 binding.tvSearching.clearAnimation();
+                rotationAnimator.cancel();
+                // Set the rotation to 0
+                binding.tvResults.setRotation(0);
+
                 binding.tvSearching.setText(getString(R.string.search_successful));
                 binding.tvResults.setCharacterDelay(50);
                 String text = String.format(getString(R.string.dismas_i_nyagaka_found_s), DateUtils.formatMonthDayYearTime(new Date()));
                 binding.tvResults.setText(text);
+                binding.tvResults.setTextColor(ContextCompat.getColor(LandingActivity.this, R.color.hack));
                 binding.tvResults.animateText(text);
                 delayAnimation();
             }

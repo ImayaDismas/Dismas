@@ -44,6 +44,6 @@
     <string name="searching">…Searching…</string>
     <string name="search_successful">…Search successful!…</string>
     <string name="found">Found</string>
-    <string name="pipe">…|</string>
+    <string name="pipe">|</string>
     <string name="dismas_i_nyagaka_found_s">Dismas I. Nyagaka found\n%s</string>
 </resources>
