@@ -2,9 +2,11 @@ package inc.smart.solutions.dismas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.transition.TransitionManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
@@ -105,6 +107,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         viewPager.addOnPageChangeListener(pageChangeListener);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+
+        binding.inputEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == 6) { // EditorInfo.IME_ACTION_DONE
+                handleCommand();
+                return true;
+            }
+            return false;
+        });
+
+        // Calculate half of the parent's width
+        float halfParentWidth = binding.constraintLayout.getWidth() / 2.0f;
+
+        // Create a ConstraintSet to apply constraints to the ImageView
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(binding.constraintLayout);
+
+        // Set translationX for the ImageView to half of the parent's width
+        constraintSet.setTranslationX(binding.imageView.getId(), halfParentWidth);
+
+        // Use TransitionManager to animate the translation
+        TransitionManager.beginDelayedTransition(binding.constraintLayout);
+        constraintSet.applyTo(binding.constraintLayout);
+    }
+
+    private void handleCommand() {
+        String command = binding.inputEditText.getText().toString();
+        binding.consoleTextView.append("\n" + command);
+        binding.inputEditText.getText().clear();
+        binding.scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
     private void setUpPagerAdapter(String[] images) {
@@ -300,18 +331,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,  Uri.parse(String.format("%s%s", getResources().getString(R.string.playstore_details), context.getPackageName()))));
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        binding.particleView.resume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        binding.particleView.pause();
     }
 
     @Override

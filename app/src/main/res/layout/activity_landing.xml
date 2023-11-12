@@ -6,27 +6,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LandingActivity"
-    android:background="@drawable/bg_repeat">
+    android:background="@android:color/black">
 
-    <FrameLayout
+    <me.ibrahimsn.particle.ParticleView
+        android:id="@+id/particleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:particleCount="6000"
+        app:particleMinRadius="3"
+        app:particleMaxRadius="10"
+        app:particlesBackgroundColor="#00000000"
+        app:particleColor="@color/colorPrimary"
+        app:particleLineColor="@color/primary_dark"
+        app:particleLinesEnabled="true" />
+
+    <RelativeLayout
+        android:id="@+id/soundCircle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/soundRipple1"
+            android:layout_width="370dp"
+            android:layout_height="370dp"
+            android:background="@drawable/circle"
+            android:alpha="0.08"
+            android:layout_centerInParent="true"/>
+
+        <View
+            android:id="@+id/soundRipple2"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@drawable/circle"
+            android:alpha="0.08"
+            android:layout_centerInParent="true"/>
+
+        <View
+            android:id="@+id/soundRipple3"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:background="@drawable/circle"
+            android:alpha="0.08"
+            android:layout_centerInParent="true"/>
+
+        <View
+            android:id="@+id/soundRipple4"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="@drawable/circle"
+            android:alpha="0.08"
+            android:layout_centerInParent="true"/>
+
+        <View
+            android:id="@+id/soundRipple5"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/circle"
+            android:alpha="0.08"
+            android:layout_centerInParent="true"/>
+
+        <View
+            android:id="@+id/soundRipple6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:alpha="0.08"
+            android:background="@drawable/circle" />
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/button"
+        layout="@layout/knob_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:gravity="center">
 
-        <inc.smart.solutions.dismas.utils.Typewriter
-            android:id="@+id/tvSlogan"
+        <TextView
+            android:id="@+id/tvSearching"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/slogan"
+            android:layout_gravity="center"
+            android:text="@string/searching"
+            android:letterSpacing="0.2"
+            android:textSize="16sp"
+            android:textAllCaps="true"
             android:textColor="@color/hack"
-            android:textSize="18sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/type_writer"
+            android:textStyle="bold"/>
+
+        <inc.smart.solutions.dismas.utils.Typewriter
+            android:id="@+id/tvResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pipe"
+            android:textColor="@color/hack"
+            android:textSize="14sp"
             android:layout_gravity="bottom|center_horizontal"
             android:fontFamily="@font/type_writer"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:letterSpacing="0.1"/>
 
-    </FrameLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

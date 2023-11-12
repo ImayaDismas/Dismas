@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Dismas</string>
-    <string name="user_name">Dismas Imaya</string>
+    <string name="user_name">Dismas Nyagaka</string>
     <string name="phone">+254 700 415 505</string>
     <string name="public_repos">Public repos</string>
     <string name="sample">0</string>
@@ -30,7 +30,7 @@
     <string name="share_via">Share via</string>
     <string name="playstore_details">http://play.google.com/store/apps/details?id=</string>
     <string name="no_email_clients_installed">No email clients installed</string>
-    <string name="send_email_using">Send email using...</string>
+    <string name="send_email_using">Send email using…</string>
     <string name="hello_there">Hello There</string>
     <string name="hello">Hello Imaya,</string>
     <string name="market">market://details?id=</string>
@@ -41,4 +41,9 @@
     <string name="permission_needed">Call Permission Needed</string>
     <string name="phone_call_permission">This app needs the Phone Call permission. Please accept to place a call</string>
     <string name="request_phone_call_permission">Request Call Phone Permission</string>
+    <string name="searching">…Searching…</string>
+    <string name="search_successful">…Search successful!…</string>
+    <string name="found">Found</string>
+    <string name="pipe">…|</string>
+    <string name="dismas_i_nyagaka_found_s">Dismas I. Nyagaka found\n%s</string>
 </resources>

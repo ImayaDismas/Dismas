@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0792A5</color>
-    <color name="primary_dark">#057484</color>
+
+    <color name="colorPrimary">#20C20E</color>
+    <color name="primary_dark">#168709</color>
+    <!--    <color name="colorAccent">#F7F4E5</color>-->
+    <color name="colorAccent">#B00EC2</color>
+
+    <!--default logo colors-->
+<!--    <color name="colorPrimary">#0792A5</color>-->
+<!--    <color name="primary_dark">#057484</color>-->
 <!--    <color name="colorAccent">#F7F4E5</color>-->
-    <color name="colorAccent">#AE0E00</color>
+<!--    <color name="colorAccent">#AE0E00</color>-->
 
     <color name="colorText">#181737</color>
     <color name="white">#FFFFFF</color>
@@ -17,4 +24,5 @@
     <color name="colorBackgroundTint">#E5F5F6</color>
     <color name="hack">#20C20E</color>
     <color name="background">#36393D</color>
+    <color name="circle">#6ABDC9</color>
 </resources>
