@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View view = binding.getRoot();
         setContentView(view);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_certified_32dp);// set drawable icon
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_certified_32dp);// set drawable icon
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fetchUserGitHub();
 
@@ -115,20 +115,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             return false;
         });
-
-        // Calculate half of the parent's width
-        float halfParentWidth = binding.constraintLayout.getWidth() / 2.0f;
-
-        // Create a ConstraintSet to apply constraints to the ImageView
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.clone(binding.constraintLayout);
-
-        // Set translationX for the ImageView to half of the parent's width
-        constraintSet.setTranslationX(binding.imageView.getId(), halfParentWidth);
-
-        // Use TransitionManager to animate the translation
-        TransitionManager.beginDelayedTransition(binding.constraintLayout);
-        constraintSet.applyTo(binding.constraintLayout);
     }
 
     private void handleCommand() {
