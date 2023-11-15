@@ -19,4 +19,12 @@ public class DateUtils {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy | hh:mm a", Locale.getDefault());
         return formatter.format(date).toUpperCase();
     }
+
+    /**
+     * Formats timestamp to 'Day of week month day hour:minute:second' format (e.g. 'Mon Nov 13 21:31:31').
+     */
+    public static String formatDayOfWeekMonthDayYearTime(Date date) { // Mon Nov 13 21:31:31
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss", Locale.getDefault());
+        return formatter.format(date);
+    }
 }

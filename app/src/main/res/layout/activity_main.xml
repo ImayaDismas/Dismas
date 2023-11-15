@@ -37,7 +37,7 @@
                     android:textColor="#FFFFFF"
                     android:padding="10dp"
                     android:textSize="12sp"
-                    android:text="Terminal: Imaya" />
+                    android:text="@string/terminal_imaya" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -63,20 +63,28 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/hack"
-                                android:padding="10dp"
+                                android:paddingHorizontal="10dp"
+                                android:paddingTop="10dp"
                                 android:textSize="12sp"
-                                android:text="Last login: Mon Nov 13 21:31:31 on console"/>
+                                android:lineSpacingExtra="1.5dp"
+                                android:gravity="center_vertical"
+                                android:text="@string/last_visit_s_on_console"/>
 
                             <EditText
                                 android:id="@+id/inputEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="➜  ~"
-                                android:padding="10dp"
+                                android:text="@string/terminal_start"
+                                android:paddingHorizontal="10dp"
+                                android:paddingBottom="10dp"
                                 android:inputType="text"
                                 android:textColor="@color/hack"
+                                android:gravity="center_vertical"
                                 android:background="@drawable/edit_text_no_bottom_line"
-                                android:textCursorDrawable="@drawable/custom_cursor"/>
+                                android:cursorVisible="true"
+                                android:textCursorDrawable="@drawable/custom_cursor"
+                                android:importantForAutofill="no"
+                                tools:targetApi="o" />
 
                         </LinearLayout>
 

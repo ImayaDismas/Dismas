@@ -46,4 +46,7 @@
     <string name="found">Found</string>
     <string name="pipe">|</string>
     <string name="dismas_i_nyagaka_found_s">Dismas I. Nyagaka found\n%s</string>
+    <string name="terminal_imaya">Terminal: Imaya</string>
+    <string name="last_visit_s_on_console">Last visit: %s on console</string>
+    <string name="terminal_start"><b>"➜ ~ "</b></string>
 </resources>

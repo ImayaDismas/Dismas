@@ -16,11 +16,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.text.Html;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.BuildConfig;
 import inc.smart.solutions.dismas.adapter.GridViewAdapter;
@@ -43,6 +46,7 @@ import inc.smart.solutions.dismas.dialogs.CustomDialog;
 import inc.smart.solutions.dismas.models.Projects;
 import inc.smart.solutions.dismas.models.GitHub;
 import inc.smart.solutions.dismas.retrofit.GitHubApiManager;
+import inc.smart.solutions.dismas.utils.DateUtils;
 import inc.smart.solutions.dismas.utils.ExpandableHeightGridView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,9 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_certified_32dp);// set drawable icon
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fetchUserGitHub();
 
@@ -108,19 +109,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPager.addOnPageChangeListener(pageChangeListener);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
+        binding.consoleTextView.setText(String.format(getString(R.string.last_visit_s_on_console), DateUtils.formatDayOfWeekMonthDayYearTime(new Date())));
+
         binding.inputEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == 6) { // EditorInfo.IME_ACTION_DONE
+            if (actionId == EditorInfo.IME_ACTION_DONE) { // EditorInfo.IME_ACTION_DONE = 6
                 handleCommand();
                 return true;
             }
             return false;
         });
+
+
     }
 
     private void handleCommand() {
         String command = binding.inputEditText.getText().toString();
         binding.consoleTextView.append("\n" + command);
         binding.inputEditText.getText().clear();
+        binding.inputEditText.setText(getString(R.string.terminal_start));
+        // placing cursor at the end of the text
+        binding.inputEditText.setSelection(binding.inputEditText.getText().length());
         binding.scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
