@@ -8,6 +8,20 @@
     android:id="@+id/constraintLayout"
     android:background="@drawable/bg_repeat">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/imaya"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/colorBorder"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,6 +51,7 @@
                     android:textColor="#FFFFFF"
                     android:padding="10dp"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     android:text="@string/terminal_imaya" />
 
                 <RelativeLayout
@@ -98,17 +113,6 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/imaya"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/colorBorder"
-        android:visibility="gone"/>
 
     <ScrollView
         android:id="@+id/ScrollView"

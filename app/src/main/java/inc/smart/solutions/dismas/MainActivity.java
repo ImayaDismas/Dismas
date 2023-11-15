@@ -14,6 +14,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.UserManager;
@@ -22,6 +24,7 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -117,6 +120,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
             return false;
+        });
+
+        // set gray scale to imageView
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+        binding.imageView.setColorFilter(filter);
+
+        // Use ViewTreeObserver to wait for the layout to be measured
+        ViewTreeObserver viewTreeObserver = binding.imageView.getViewTreeObserver();
+        viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                // Remove the listener to avoid multiple callbacks
+                binding.imageView.getViewTreeObserver().removeOnPreDrawListener(this);
+
+                // Get the width of the ImageView
+                int imageViewWidth = binding.imageView.getWidth();
+
+                // Calculate the translation value (50% of the width)
+                int translationX = imageViewWidth / 2;
+
+                // Apply translation to the ImageView
+                binding.imageView.setTranslationX(-translationX);
+
+                // Return true to continue with the drawing
+                return true;
+            }
         });
 
 
