@@ -20,7 +20,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="1:1"/>
+        app:layout_constraintDimensionRatio="1:1"
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
         android:fitsSystemWindows="true">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -111,6 +113,75 @@
 
 
         </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/llMenu"
+            android:layout_below="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/menu_about"
+                android:minWidth="130dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:letterSpacing="0.3"
+                android:background="@drawable/sci_fi_button"
+                android:textColor="@color/white"
+                android:elevation="8dp"
+                android:visibility="gone"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnExperience"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:minWidth="130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/menu_experience"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:letterSpacing="0.3"
+                android:background="@drawable/sci_fi_button"
+                android:textColor="@color/white"
+                android:elevation="8dp"
+                android:visibility="gone"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPortfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:minWidth="130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/menu_portfolio"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:letterSpacing="0.3"
+                android:background="@drawable/sci_fi_button"
+                android:textColor="@color/white"
+                android:elevation="8dp"
+                android:visibility="gone"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSayHi"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:minWidth="130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/menu_say_hi"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:letterSpacing="0.3"
+                android:background="@drawable/sci_fi_button"
+                android:textColor="@color/white"
+                android:elevation="8dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

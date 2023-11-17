@@ -1,35 +1,46 @@
 package inc.smart.solutions.dismas;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.transition.TransitionManager;
-import androidx.viewpager.widget.ViewPager;
-
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.UserManager;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.viewpager.widget.ViewPager;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -46,8 +57,8 @@ import inc.smart.solutions.dismas.animations.ZoomOutPageTransformer;
 import inc.smart.solutions.dismas.constants.Configs;
 import inc.smart.solutions.dismas.databinding.ActivityMainBinding;
 import inc.smart.solutions.dismas.dialogs.CustomDialog;
-import inc.smart.solutions.dismas.models.Projects;
 import inc.smart.solutions.dismas.models.GitHub;
+import inc.smart.solutions.dismas.models.Projects;
 import inc.smart.solutions.dismas.retrofit.GitHubApiManager;
 import inc.smart.solutions.dismas.utils.DateUtils;
 import inc.smart.solutions.dismas.utils.ExpandableHeightGridView;
@@ -72,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View view = binding.getRoot();
         setContentView(view);
 
-        fetchUserGitHub();
+        // fetchUserGitHub();
 
         LinearLayout llLinkedIn = findViewById(R.id.llLinkedIn);
         LinearLayout llGitHub = findViewById(R.id.llGitHub);
@@ -122,6 +133,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         });
 
+        binding.inputEditText.setText(String.format("%s%s", getString(R.string.terminal_start), getString(R.string.ls_menu)));
+        binding.inputEditText.setSelection(binding.inputEditText.getText().length());
+        binding.inputEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
+
+        binding.btnAbout.setVisibility(View.VISIBLE);
+        aboutAnimation();
+
+        binding.btnAbout.setOnClickListener(this);
+        binding.btnExperience.setOnClickListener(this);
+        binding.btnPortfolio.setOnClickListener(this);
+        binding.btnSayHi.setOnClickListener(this);
+
+        transformImage();
+    }
+
+    private void transformImage(){
         // set gray scale to imageView
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
@@ -150,18 +177,146 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
         });
+    }
+    private void aboutAnimation(){
+        /** //Create a scaling animation
+         Animation animation = new ScaleAnimation(0, 1,  // fromXScale, toXScale
+         0, 1,  // fromYScale, toYScale
+         Animation.RELATIVE_TO_SELF, 0.5f,  // pivotX
+         Animation.RELATIVE_TO_SELF, 0.5f   // pivotY
+         );
+         animation.setDuration(1000);
+         animation.setInterpolator(new AccelerateDecelerateInterpolator());*/
 
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
 
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnExperience.setVisibility(View.VISIBLE);
+                experienceAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnAbout.startAnimation(animation);
+    }
+
+    private void experienceAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnPortfolio.setVisibility(View.VISIBLE);
+                portfolioAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnExperience.startAnimation(animation);
+    }
+
+    private void portfolioAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnSayHi.setVisibility(View.VISIBLE);
+                sayHiAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnPortfolio.startAnimation(animation);
+    }
+
+    private void sayHiAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnSayHi.startAnimation(animation);
     }
 
     private void handleCommand() {
         String command = binding.inputEditText.getText().toString();
         binding.consoleTextView.append("\n" + command);
+        if (command.contains(getString(R.string.ls_menu))){
+            lsMenu();
+        }
         binding.inputEditText.getText().clear();
         binding.inputEditText.setText(getString(R.string.terminal_start));
         // placing cursor at the end of the text
         binding.inputEditText.setSelection(binding.inputEditText.getText().length());
         binding.scrollView.fullScroll(View.FOCUS_DOWN);
+    }
+
+    private void lsMenu(){
+        binding.consoleTextView.append("\n");
+        // Replace the placeholder with the colored text
+        String aboutText = String.format("%s%s", binding.consoleTextView.getText().toString(), getString(R.string.about));
+        Log.e(TAG, aboutText);
+        SpannableString spannableString = new SpannableString(aboutText);
+
+        // Find the index of the colored text in the final text
+        int startIndex = aboutText.indexOf(getString(R.string.about));
+        int endIndex = startIndex + getString(R.string.about).length();
+
+        // Set the color span for the colored text
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.folder));
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        binding.consoleTextView.setText(spannableString);
+
+        binding.consoleTextView.append("\n");
+        binding.consoleTextView.append(getString(R.string.experience));
+        binding.consoleTextView.append("\n");
+        binding.consoleTextView.append(getString(R.string.portfolio));
+        binding.consoleTextView.append("\n");
+        binding.consoleTextView.append(getString(R.string.say_hi));
     }
 
     private void setUpPagerAdapter(String[] images) {
@@ -361,6 +516,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.btnAbout || id == R.id.btnExperience || id == R.id.btnPortfolio || id == R.id.btnSayHi){
+            // Get the center for the clipping circle
+            int cx = view.getWidth() / 2;
+            int cy = view.getHeight() / 2;
+
+            // Get the final radius for the clipping circle
+            float finalRadius = (float) Math.hypot(cx, cy);
+
+            // Create the circular reveal animation
+            Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+
+            // Set a listener to handle the animation end
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    // Hide the button after the animation ends
+                    view.setVisibility(View.GONE);
+                }
+            });
+
+            // Start the animation
+            anim.start();
+        }
+
+
         switch (view.getId()){
             case R.id.llLinkedIn:
                 openURLExternal(Configs.LINKEDIN_URL);

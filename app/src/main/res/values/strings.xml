@@ -49,4 +49,13 @@
     <string name="terminal_imaya">Terminal: Imaya</string>
     <string name="last_visit_s_on_console">Last visit: %s on console</string>
     <string name="terminal_start"><b>"➜ ~ "</b></string>
+    <string name="menu_about">/about</string>
+    <string name="menu_experience">/experience</string>
+    <string name="menu_portfolio">/portfolio</string>
+    <string name="menu_say_hi">/say hi</string>
+    <string name="ls_menu">ls menu</string>
+    <string name="about">about</string>
+    <string name="experience">experience</string>
+    <string name="portfolio">portfolio</string>
+    <string name="say_hi">say hi</string>
 </resources>
