@@ -58,4 +58,7 @@
     <string name="experience">experience</string>
     <string name="portfolio">portfolio</string>
     <string name="say_hi">say hi</string>
+    <string name="clear">clear</string>
+    <string name="zsh">"zsh: "</string>
+    <string name="command_not_found">"command not found: "</string>
 </resources>

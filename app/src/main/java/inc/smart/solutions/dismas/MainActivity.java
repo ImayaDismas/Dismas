@@ -11,13 +11,17 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -137,9 +141,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.inputEditText.setSelection(binding.inputEditText.getText().length());
         binding.inputEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
 
-        binding.btnAbout.setVisibility(View.VISIBLE);
-        aboutAnimation();
-
         binding.btnAbout.setOnClickListener(this);
         binding.btnExperience.setOnClickListener(this);
         binding.btnPortfolio.setOnClickListener(this);
@@ -211,6 +212,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.btnAbout.startAnimation(animation);
     }
 
+    private void reverseAboutAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.reverse_button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnAbout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnAbout.startAnimation(animation);
+    }
+
     private void experienceAnimation(){
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.button_animation);
         // Set an AnimationListener to detect the end of the animation
@@ -225,6 +249,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Animation ended, add any additional logic here
                 binding.btnPortfolio.setVisibility(View.VISIBLE);
                 portfolioAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnExperience.startAnimation(animation);
+    }
+
+    private void reverseExperienceAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.reverse_button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnExperience.setVisibility(View.GONE);
+                reverseAboutAnimation();
             }
 
             @Override
@@ -259,6 +307,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.btnPortfolio.startAnimation(animation);
     }
 
+    private void reversePortfolioAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.reverse_button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnPortfolio.setVisibility(View.GONE);
+                reverseExperienceAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnPortfolio.startAnimation(animation);
+    }
+
     private void sayHiAnimation(){
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.button_animation);
         // Set an AnimationListener to detect the end of the animation
@@ -281,11 +353,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.btnSayHi.startAnimation(animation);
     }
 
+    private void reverseSayHiAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.reverse_button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnSayHi.setVisibility(View.GONE);
+                reversePortfolioAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnSayHi.startAnimation(animation);
+    }
+
     private void handleCommand() {
         String command = binding.inputEditText.getText().toString();
         binding.consoleTextView.append("\n" + command);
         if (command.contains(getString(R.string.ls_menu))){
             lsMenu();
+        }else if (command.contains(getString(R.string.clear))){
+            clear();
+        }else{
+            String text = command.replace(getString(R.string.terminal_start), "");
+            if (!TextUtils.isEmpty(text))
+                commandNotFound(text);
         }
         binding.inputEditText.getText().clear();
         binding.inputEditText.setText(getString(R.string.terminal_start));
@@ -294,29 +396,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
+    private void commandNotFound(String command){
+        // Create a SpannableString with the desired color for the text
+        String errorMessage = getString(R.string.zsh);
+        SpannableString spannableString = new SpannableString("\n" + errorMessage);
+
+        // Set the color for the error message
+        int color = Color.RED; // Change this to the desired color
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(color);
+        spannableString.setSpan(colorSpan, 0, errorMessage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Append the SpannableString to the TextView
+        binding.consoleTextView.append(spannableString);
+        binding.consoleTextView.append(String.format("%s%s", getString(R.string.command_not_found), command));
+    }
+
+    private void clear(){
+        String[] consoleText = binding.consoleTextView.getText().toString().split("\n");
+        binding.consoleTextView.setText(consoleText[0]);
+        reverseSayHiAnimation();
+    }
+
     private void lsMenu(){
         binding.consoleTextView.append("\n");
         // Replace the placeholder with the colored text
-        String aboutText = String.format("%s%s", binding.consoleTextView.getText().toString(), getString(R.string.about));
-        Log.e(TAG, aboutText);
-        SpannableString spannableString = new SpannableString(aboutText);
+        String finalText = String.format("%s%s\n%s\n%s\n%s", binding.consoleTextView.getText().toString(), getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi));
+        SpannableString spannableString = new SpannableString(finalText);
 
         // Find the index of the colored text in the final text
-        int startIndex = aboutText.indexOf(getString(R.string.about));
-        int endIndex = startIndex + getString(R.string.about).length();
+        int startIndex = finalText.indexOf(String.format("%s\n%s\n%s\n%s", getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi)));
+        int endIndex = startIndex + String.format("%s\n%s\n%s\n%s", getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi)).length();
 
         // Set the color span for the colored text
         ForegroundColorSpan colorSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.folder));
         spannableString.setSpan(colorSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+        // Set a bold span for the entire text
+        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+        spannableString.setSpan(boldSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         binding.consoleTextView.setText(spannableString);
 
-        binding.consoleTextView.append("\n");
-        binding.consoleTextView.append(getString(R.string.experience));
-        binding.consoleTextView.append("\n");
-        binding.consoleTextView.append(getString(R.string.portfolio));
-        binding.consoleTextView.append("\n");
-        binding.consoleTextView.append(getString(R.string.say_hi));
+        binding.btnAbout.setVisibility(View.VISIBLE);
+        aboutAnimation();
     }
 
     private void setUpPagerAdapter(String[] images) {
