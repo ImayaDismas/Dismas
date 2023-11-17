@@ -145,8 +145,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.btnExperience.setOnClickListener(this);
         binding.btnPortfolio.setOnClickListener(this);
         binding.btnSayHi.setOnClickListener(this);
-
-        transformImage();
     }
 
     private void transformImage(){
@@ -343,6 +341,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
                 // Animation ended, add any additional logic here
+                binding.btnClear.setVisibility(View.VISIBLE);
+                clearAnimation();
             }
 
             @Override
@@ -375,6 +375,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         binding.btnSayHi.startAnimation(animation);
+    }
+
+    private void clearAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnClear.startAnimation(animation);
+    }
+
+    private void reverseClearAnimation(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.reverse_button_animation);
+        // Set an AnimationListener to detect the end of the animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, add any additional logic here
+                binding.btnClear.setVisibility(View.GONE);
+                reverseSayHiAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Animation repeated (if set to repeat)
+            }
+        });
+        binding.btnClear.startAnimation(animation);
     }
 
     private void handleCommand() {
@@ -414,18 +460,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void clear(){
         String[] consoleText = binding.consoleTextView.getText().toString().split("\n");
         binding.consoleTextView.setText(consoleText[0]);
-        reverseSayHiAnimation();
+        reverseClearAnimation();
     }
 
     private void lsMenu(){
         binding.consoleTextView.append("\n");
         // Replace the placeholder with the colored text
-        String finalText = String.format("%s%s\n%s\n%s\n%s", binding.consoleTextView.getText().toString(), getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi));
+        String finalText = String.format("%s%s\n%s\n%s\n%s\n%s", binding.consoleTextView.getText().toString(), getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi), getString(R.string.clear));
         SpannableString spannableString = new SpannableString(finalText);
 
         // Find the index of the colored text in the final text
-        int startIndex = finalText.indexOf(String.format("%s\n%s\n%s\n%s", getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi)));
-        int endIndex = startIndex + String.format("%s\n%s\n%s\n%s", getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi)).length();
+        int startIndex = finalText.indexOf(String.format("%s\n%s\n%s\n%s\n%s", getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi), getString(R.string.clear)));
+        int endIndex = startIndex + String.format("%s\n%s\n%s\n%s\n%s", getString(R.string.about), getString(R.string.portfolio), getString(R.string.experience), getString(R.string.say_hi), getString(R.string.clear)).length();
 
         // Set the color span for the colored text
         ForegroundColorSpan colorSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.folder));
@@ -655,12 +701,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     // Hide the button after the animation ends
-                    view.setVisibility(View.GONE);
+                    // view.setVisibility(View.GONE);
                 }
             });
 
             // Start the animation
             anim.start();
+
+            if(id == R.id.btnAbout){
+                binding.imageView.setVisibility(View.VISIBLE);
+                transformImage();
+            }
         }
 
 

@@ -61,4 +61,5 @@
     <string name="clear">clear</string>
     <string name="zsh">"zsh: "</string>
     <string name="command_not_found">"command not found: "</string>
+    <string name="menu_clear">/clear</string>
 </resources>
