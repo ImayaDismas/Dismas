@@ -39,6 +39,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.btnExperience.setOnClickListener(this);
         binding.btnPortfolio.setOnClickListener(this);
         binding.btnSayHi.setOnClickListener(this);
+        binding.btnClear.setOnClickListener(this);
     }
 
     private void transformImage(){
@@ -460,7 +462,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void clear(){
         String[] consoleText = binding.consoleTextView.getText().toString().split("\n");
         binding.consoleTextView.setText(consoleText[0]);
-        reverseClearAnimation();
+        reverseCircularRevealImage(binding.imageView);
     }
 
     private void lsMenu(){
@@ -685,7 +687,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.btnAbout || id == R.id.btnExperience || id == R.id.btnPortfolio || id == R.id.btnSayHi){
+        if (id == R.id.btnAbout || id == R.id.btnExperience || id == R.id.btnPortfolio || id == R.id.btnSayHi || id == R.id.btnClear){
             // Get the center for the clipping circle
             int cx = view.getWidth() / 2;
             int cy = view.getHeight() / 2;
@@ -709,8 +711,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             anim.start();
 
             if(id == R.id.btnAbout){
-                binding.imageView.setVisibility(View.VISIBLE);
                 transformImage();
+                circularRevealImage(binding.imageView);
+            }else if(id == R.id.btnClear){
+                binding.inputEditText.setText(String.format("%s%s", getString(R.string.terminal_start), getString(R.string.clear)));
+                binding.inputEditText.setSelection(binding.inputEditText.getText().length());
+                binding.inputEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
             }
         }
 
@@ -733,6 +739,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    private void circularRevealImage(View view) {
+        int centerX = view.getWidth() / 2;
+        int centerY = view.getHeight() / 2;
+        float startRadius = 0;
+        float endRadius = (float) Math.hypot(centerX, centerY);
+
+        Animator circularReveal = ViewAnimationUtils.createCircularReveal(
+                view,
+                centerX,
+                centerY,
+                startRadius,
+                endRadius
+        );
+
+        circularReveal.setDuration(1000);
+        circularReveal.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        view.setVisibility(View.VISIBLE);
+        circularReveal.start();
+    }
+
+    private void reverseCircularRevealImage(View view) {
+        int centerX = view.getWidth() / 2;
+        int centerY = view.getHeight() / 2;
+        float startRadius = (float) Math.hypot(centerX, centerY);
+        float endRadius = 0;
+
+        Animator circularHide = ViewAnimationUtils.createCircularReveal(
+                view,
+                centerX,
+                centerY,
+                startRadius,
+                endRadius
+        );
+
+        circularHide.setDuration(1000);
+        circularHide.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        circularHide.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(@NonNull Animator animator) {
+            }
+
+            @Override
+            public void onAnimationEnd(@NonNull Animator animator) {
+                view.setVisibility(View.INVISIBLE);
+                reverseClearAnimation();
+            }
+
+            @Override
+            public void onAnimationCancel(@NonNull Animator animator) {
+            }
+
+            @Override
+            public void onAnimationRepeat(@NonNull Animator animator) {
+            }
+        });
+
+        circularHide.start();
+
     }
 
     @Override
