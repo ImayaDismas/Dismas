@@ -462,6 +462,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void clear(){
         String[] consoleText = binding.consoleTextView.getText().toString().split("\n");
         binding.consoleTextView.setText(consoleText[0]);
+
         reverseCircularRevealImage(binding.imageView);
     }
 
